@@ -32,125 +32,214 @@ databaseChangeLog:
                   type: datetime
 
   - changeSet:
-        id: 2
-        author: casoc
-        changes:
-          - createTable:
-              tableName: roles
-              columns:
-                - column:
-                    name: id
-                    type: int
-                    autoIncrement: true
-                    constraints:
-                      primaryKey: true
-                      nullable: false
-                - column:
-                    name: name
-                    type: varchar(50)
-                    constraints:
-                      nullable: false
-                - column:
-                    name: commont
-                    type: varchar(100)
-                    constraints:
-                      nullable: false
-                - column:
-                    name: gmt_create
-                    type: datetime
-                - column:
-                    name: gmt_modified
-                    type: datetime
+      id: 2
+      author: casoc
+      changes:
+        - createTable:
+            tableName: roles
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: commont
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gmt_create
+                  type: datetime
+              - column:
+                  name: gmt_modified
+                  type: datetime
 
   - changeSet:
-        id: 3
-        author: casoc
-        changes:
-          - createTable:
-              tableName: privileges
-              columns:
-                - column:
-                    name: id
-                    type: int
-                    autoIncrement: true
-                    constraints:
-                      primaryKey: true
-                      nullable: false
-                - column:
-                    name: name
-                    type: varchar(50)
-                    constraints:
-                      nullable: false
-                - column:
-                    name: commont
-                    type: varchar(100)
-                    constraints:
-                      nullable: false
-                - column:
-                    name: gmt_create
-                    type: datetime
-                - column:
-                    name: gmt_modified
-                    type: datetime
+      id: 3
+      author: casoc
+      changes:
+        - createTable:
+            tableName: privileges
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: commont
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gmt_create
+                  type: datetime
+              - column:
+                  name: gmt_modified
+                  type: datetime
 
   - changeSet:
-        id: 4
-        author: casoc
-        changes:
-          - createTable:
-              tableName: user_roles
-              columns:
-                - column:
-                    name: id
-                    type: int
-                    autoIncrement: true
-                    constraints:
-                      primaryKey: true
-                      nullable: false
-                - column:
-                    name: user_id
-                    type: int
-                    constraints:
-                      nullable: false
-                - column:
-                    name: role_id
-                    type: int
-                    constraints:
-                      nullable: false
-                - column:
-                    name: gmt_create
-                    type: datetime
-                - column:
-                    name: gmt_modified
-                    type: datetime
+      id: 4
+      author: casoc
+      changes:
+        - createTable:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gmt_create
+                  type: datetime
+              - column:
+                  name: gmt_modified
+                  type: datetime
 
   - changeSet:
-        id: 5
-        author: casoc
-        changes:
-          - createTable:
-              tableName: role_privileges
-              columns:
-                - column:
-                    name: id
-                    type: int
-                    autoIncrement: true
-                    constraints:
-                      primaryKey: true
-                      nullable: false
-                - column:
-                    name: role_id
-                    type: int
-                    constraints:
-                      nullable: false
-                - column:
-                    name: privilege_id
-                    type: int
-                    constraints:
-                      nullable: false
-                - column:
-                    name: gmt_create
-                    type: datetime
-                - column:
-                    name: gmt_modified
-                    type: datetime
+      id: 5
+      author: casoc
+      changes:
+        - createTable:
+            tableName: role_privileges
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: privilege_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gmt_create
+                  type: datetime
+              - column:
+                  name: gmt_modified
+                  type: datetime
+
+  - changeSet:
+      id: 6
+      author: casoc
+      changes:
+        - createTable:
+            tableName: navigations
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(30)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comment
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gmt_create
+                  type: datetime
+              - column:
+                  name: gmt_modified
+                  type: datetime
+
+  - changeSet:
+      id: 7
+      author: casoc
+      changes:
+        - createTable:
+            tableName: custom_fields
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: label
+                  type: varchar(30)
+              - column:
+                  name: type
+                  type: varchar(10)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gmt_create
+                  type: datetime
+              - column:
+                  name: gmt_modified
+                  type: datetime
+
+  - changeSet:
+      id: 8
+      auther: casoc
+      changes:
+        - createTable:
+            tableName: custom_values
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: filed_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: value
+                  type: text
+              - column:
+                  name: gmt_create
+                  type: datetime
+              - column:
+                  name: gmt_modified
+                  type: datetime
