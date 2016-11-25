@@ -19,6 +19,7 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: password
                   type: varchar(100)
@@ -47,6 +48,7 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: comment
                   type: varchar(100)
@@ -75,6 +77,7 @@ databaseChangeLog:
                   type: varchar(50)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: commont
                   type: varchar(100)
@@ -159,6 +162,7 @@ databaseChangeLog:
                   type: varchar(30)
                   constraints:
                     nullable: false
+                    unique: true
               - column:
                   name: comment
                   type: varchar(100)
