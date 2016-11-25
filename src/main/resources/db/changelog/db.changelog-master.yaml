@@ -26,15 +26,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
               - column:
                   name: gmt_modified
-                  type: datetime
-
-  - changeSet:
-      id: 2
-      author: casoc
-      changes:
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
         - createTable:
             tableName: roles
             columns:
@@ -51,21 +48,18 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: commont
+                  name: comment
                   type: varchar(100)
                   constraints:
                     nullable: false
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
               - column:
                   name: gmt_modified
-                  type: datetime
-
-  - changeSet:
-      id: 3
-      author: casoc
-      changes:
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
         - createTable:
             tableName: privileges
             columns:
@@ -88,15 +82,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
               - column:
                   name: gmt_modified
-                  type: datetime
-
-  - changeSet:
-      id: 4
-      author: casoc
-      changes:
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
         - createTable:
             tableName: user_roles
             columns:
@@ -119,15 +110,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
               - column:
                   name: gmt_modified
-                  type: datetime
-
-  - changeSet:
-      id: 5
-      author: casoc
-      changes:
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
         - createTable:
             tableName: role_privileges
             columns:
@@ -150,15 +138,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
               - column:
                   name: gmt_modified
-                  type: datetime
-
-  - changeSet:
-      id: 6
-      author: casoc
-      changes:
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
         - createTable:
             tableName: navigations
             columns:
@@ -181,15 +166,12 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
               - column:
                   name: gmt_modified
-                  type: datetime
-
-  - changeSet:
-      id: 7
-      author: casoc
-      changes:
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
         - createTable:
             tableName: custom_fields
             columns:
@@ -204,21 +186,23 @@ databaseChangeLog:
                   name: label
                   type: varchar(30)
               - column:
+                  name: navigation_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
                   name: type
                   type: varchar(10)
                   constraints:
                     nullable: false
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
               - column:
                   name: gmt_modified
-                  type: datetime
-
-  - changeSet:
-      id: 8
-      auther: casoc
-      changes:
+                  type: timestamp
+                  defaultValueDate: CURRENT_TIMESTAMP
         - createTable:
             tableName: custom_values
             columns:
@@ -239,7 +223,40 @@ databaseChangeLog:
                   type: text
               - column:
                   name: gmt_create
-                  type: datetime
+                  type: timestamp
               - column:
                   name: gmt_modified
-                  type: datetime
+                  type: timestamp
+
+  - changeSet:
+      id: 2
+      author: casoc
+      comment: init database
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: name
+                  value: admin
+              - column:
+                  name: password
+                  value: admin
+        - insert:
+            tableName: roles
+            columns:
+              - column:
+                  name: name
+                  value: SUPER_ADMIN
+              - column:
+                  name: comment
+                  value: 超级管理员
+        - insert:
+            tableName: user_roles
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: role_id
+                  value: 1
