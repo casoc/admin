@@ -9,8 +9,8 @@ import javax.annotation.Resource;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * @author chenshiwei
- * @version $Id: UserDAOTest.java, v 0.1 2016/11/25 17:22 chenshiwei Exp $
+ * @author casoc
+ * @version $Id: UserDAOTest.java, v 0.1 2016/11/25 17:22 casoc Exp $
  */
 public class UserDAOTest extends AdminApplicationTests {
 

@@ -7,22 +7,22 @@ import java.util.Date;
 
 /**
  * @author casoc
- * @version $Id: User.java, v 0.1 2016/11/25 16:55 casoc Exp $
+ * @version $Id: CustomValueDO.java, v 0.1 2016/11/27 12:14 casoc Exp $
  */
 @Entity
-@Table(name = "users")
-public class UserDO {
+@Table(name = "custom_values")
+public class CustomValueDO {
 
     @Id
-    private Long   id;
+    private Long id;
 
-    private String name;
+    private Long fieldId;
 
-    private String password;
+    private String value;
 
-    private Date   gmtCreate;
+    private Date gmtCreate;
 
-    private Date   gmt_modified;
+    private Date gmt_modified;
 
     public Long getId() {
         return id;
@@ -32,20 +32,20 @@ public class UserDO {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Long getFieldId() {
+        return fieldId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFieldId(Long fieldId) {
+        this.fieldId = fieldId;
     }
 
-    public String getPassword() {
-        return password;
+    public String getValue() {
+        return value;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public Date getGmtCreate() {

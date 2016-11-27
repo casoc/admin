@@ -7,22 +7,22 @@ import java.util.Date;
 
 /**
  * @author casoc
- * @version $Id: User.java, v 0.1 2016/11/25 16:55 casoc Exp $
+ * @version $Id: PrivilegeDO.java, v 0.1 2016/11/27 12:05 casoc Exp $
  */
 @Entity
-@Table(name = "users")
-public class UserDO {
+@Table(name = "privileges")
+public class PrivilegeDO {
 
     @Id
-    private Long   id;
+    private Long id;
 
     private String name;
 
-    private String password;
+    private String comment;
 
-    private Date   gmtCreate;
+    private Date gmtCreate;
 
-    private Date   gmt_modified;
+    private Date gmtModified;
 
     public Long getId() {
         return id;
@@ -40,12 +40,12 @@ public class UserDO {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getComment() {
+        return comment;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     public Date getGmtCreate() {
@@ -56,11 +56,11 @@ public class UserDO {
         this.gmtCreate = gmtCreate;
     }
 
-    public Date getGmt_modified() {
-        return gmt_modified;
+    public Date getGmtModified() {
+        return gmtModified;
     }
 
-    public void setGmt_modified(Date gmt_modified) {
-        this.gmt_modified = gmt_modified;
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
     }
 }
