@@ -1,6 +1,9 @@
 package com.example.framework;
 
 import com.example.framework.shiro.UsernameRealm;
+import net.sf.ehcache.Cache;
+import net.sf.ehcache.CacheManager;
+import net.sf.ehcache.Ehcache;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -30,8 +33,21 @@ public class ShiroConfig {
     @Bean
     public EhCacheManager shiroEhcacheManager() {
         EhCacheManager em = new EhCacheManager();
-        em.setCacheManagerConfigFile("classpath:ehcache-shiro.xml");
+        em.setCacheManager(cacheManager());
         return em;
+    }
+
+    @Bean
+    public CacheManager cacheManager() {
+        CacheManager cacheManager = new CacheManager();
+        cacheManager.addCache(ehcache());
+        return cacheManager;
+    }
+
+    @Bean
+    public Ehcache ehcache() {
+        Cache cache = new Cache("shiroCache", 10000, false, false, 120, 120, false, 120);
+        return cache;
     }
 
     @Bean(name = "lifecycleBeanPostProcessor")
