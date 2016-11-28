@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -9,10 +9,11 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="style/bootstrap.css">
-    <link rel="stylesheet" href="style/font-awesome.min.css">
-    <link rel="stylesheet" href="style/form-elements.css">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="../static/style/bootstrap.css" th:href="@{../static/style/bootstrap.css}">
+    <link rel="stylesheet" href="../static/style/font-awesome.min.css"
+          th:href="@{../static/style/font-awesome.min.css}">
+    <link rel="stylesheet" href="../static/style/form-elements.css" th:href="@{../static/style/form-elements.css}">
+    <link rel="stylesheet" href="../static/style/style.css" th:href="@{../static/style/style.css}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -22,15 +23,22 @@
     <![endif]-->
 
     <!-- Favicon and touch icons -->
-    <link rel="shortcut icon" href="image/favicon.png">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="image/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="image/aapple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="image/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="image/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../static/image/favicon.png" th:href="@{image/favicon.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../static/image/apple-touch-icon-144-precomposed.png"
+          th:href="@{image/apple-touch-icon-144-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="../static/image/aapple-touch-icon-114-precomposed.png"
+          th:href="@{image/aapple-touch-icon-114-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="../static/image/apple-touch-icon-72-precomposed.png"
+          th:href="@{image/apple-touch-icon-72-precomposed.png}">
+    <link rel="apple-touch-icon-precomposed"
+          href="../static/image/apple-touch-icon-57-precomposed.png"
+          th:href="@{image/apple-touch-icon-57-precomposed.png}">
 
 </head>
 
-<body>
+<body style="background: url('../static/image/background.jpg')" th:style="${background: url(@{image/background.jpg})}">
 
 <!-- Top content -->
 <div class="top-content">
@@ -40,11 +48,14 @@
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
                     <h1>User Login</h1>
-                    <!--<c:if test="${param.login_error != null}">-->
-                    <!--<div class="alert alert-danger" role="alert" id="errorMessage">-->
-                    <!--<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>-->
-                    <!--</div>-->
-                    <!--</c:if>-->
+                    <div th:if="${not #lists.isEmpty(errors)}" class="alert alert-danger" role="alert"
+                         id="errorMessage" th:remove="all-but-first">
+                        <ul th:each="error : ${errors}">
+                            　　
+                            <li th:text="${error}">用户名不能为空</li>
+                            <li>密码不能为空</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -60,7 +71,7 @@
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <form role="form" name="f" action="<c:url value='j_spring_security_check'/>" method="post"
+                        <form role="form" name="f" action="j_spring_security_check" method="post"
                               class="login-form">
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>
@@ -87,13 +98,13 @@
 
 
 <!-- Javascript -->
-<script src="javascript/jquery-1.10.2.min.js"></script>
-<script src="javascript/bootstrap.js"></script>
-<script src="javascript/jquery.backstretch.js"></script>
-<script src="javascript/scripts.js"></script>
+<script src="../static/javascript/jquery-1.10.2.min.js" th:src="@{javascript/jquery-1.10.2.min.js}"></script>
+<script src="../static/javascript/bootstrap.js" th:src="@{javascript/bootstrap.js}"></script>
+<script src="../static/javascript/jquery.backstretch.js" th:src="@{javascript/jquery.backstretch.js}"></script>
+<script src="../static/javascript/scripts.js" th:src="@{javascript/scripts.js}"></script>
 
 <!--[if lt IE 10]>
-<script src="javascript/placeholder.js"></script>
+<script src="../static/javascript/placeholder.js" th:src="@{javascript/placeholder.js}"></script>
 <![endif]-->
 
 </body>

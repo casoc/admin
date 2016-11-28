@@ -1,46 +1,54 @@
 package com.example.framework.shiro;
 
+import com.example.framework.dao.PrivilegeDAO;
+import com.example.framework.dao.RoleDAO;
+import com.example.framework.dao.RolePrivilegeDAO;
 import com.example.framework.dao.UserDAO;
+import com.example.framework.dao.UserRoleDAO;
 import com.example.framework.dataobject.UserDO;
+import com.example.framework.util.MD5Util;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.realm.Realm;
+import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.realm.AuthorizingRealm;
+import org.apache.shiro.subject.PrincipalCollection;
 
 import javax.annotation.Resource;
 
 /**
  * @author casoc
- * @version $Id: DatebaseRealm.java, v 0.1 2016/11/25 16:51 casoc Exp $
+ * @version $Id: UsernameRealm.java, v 0.1 2016/11/25 16:51 casoc Exp $
  */
-public class UsernameRealm implements Realm {
+public class UsernameRealm extends AuthorizingRealm {
 
     @Resource
-    private UserDAO userDAO;
+    private UserDAO          userDAO;
+
+    @Resource
+    private RoleDAO          roleDAO;
+
+    @Resource
+    private PrivilegeDAO     privilegeDAO;
+
+    @Resource
+    private UserRoleDAO      userRoleDAO;
+
+    @Resource
+    private RolePrivilegeDAO rolePrivilegeDAO;
 
     @Override
-    public String getName() {
-        return "username realm";
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
+                                                                                                 throws AuthenticationException {
+        return null;
     }
 
     @Override
-    public boolean supports(AuthenticationToken authenticationToken) {
-        return true;
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+        return null;
     }
 
-    @Override
-    public AuthenticationInfo getAuthenticationInfo(AuthenticationToken authenticationToken)
-                                                                                            throws AuthenticationException {
-        String username = authenticationToken.getPrincipal().toString();
-        String password = authenticationToken.getCredentials().toString();
-
-        UserDO userDO = userDAO.findByName(username);
-
-        if (userDO == null || !userDO.getPassword().equals(password))
-            throw new UnknownAccountException();
-
-        return new SimpleAuthenticationInfo(username, password, getName());
+    public boolean isPasswordCorrect(UserDO userDO, String password) {
+        return userDO.getPassword().equals(MD5Util.textToMD5L32(password));
     }
 }
