@@ -82,10 +82,11 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager());
         shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setSuccessUrl("/admin");
+        shiroFilterFactoryBean.setSuccessUrl("/");
+        filterChainDefinitionMap.put("/", "authc");
         //        filterChainDefinitionMap.put("/sa/**", "authc");
         //        filterChainDefinitionMap.put("/**", "anon");
-        //        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }
 }

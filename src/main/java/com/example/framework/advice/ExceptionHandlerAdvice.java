@@ -1,7 +1,7 @@
 package com.example.framework.advice;
 
+import com.example.framework.helper.MessageHelper;
 import com.example.framework.util.AdminBaseException;
-import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,12 +16,12 @@ import javax.annotation.Resource;
 public class ExceptionHandlerAdvice {
 
     @Resource
-    private MessageSource messageSource;
+    private MessageHelper messageHelper;
 
     @ExceptionHandler(AdminBaseException.class)
     public ModelAndView handler(AdminBaseException exception) {
         ModelAndView error = new ModelAndView("error");
-        error.addObject(messageSource.getMessage(exception.getDetailMessage(), null, null));
+        error.addObject(messageHelper.getMessage(exception.getDetailMessage()));
         return error;
     }
 }
