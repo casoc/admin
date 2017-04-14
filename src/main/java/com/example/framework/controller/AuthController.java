@@ -26,17 +26,16 @@ public class AuthController {
     @Resource
     private MessageHelper messageHelper;
 
-    @RequestMapping(name = "/login")
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage() {
         return "login";
     }
 
-    @RequestMapping(name = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(Map<String, List<String>> map, String username, String password) {
         List<String> errors = new ArrayList();
         try {
-            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username,
-                    password);
+            UsernamePasswordToken usernamePasswordToken = new UsernamePasswordToken(username, password);
             SecurityUtils.getSubject().login(usernamePasswordToken);
         } catch (UnknownAccountException e) {
             errors.add(messageHelper.getMessage("exception.unknownUser"));

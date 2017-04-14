@@ -40,7 +40,8 @@
 
 </head>
 
-<body style="background: url('../static/image/background.jpg')" th:style="${background: url(@{image/background.jpg})}">
+<body style="background: url('../static/image/background.jpg')"
+      th:style="'background:url(' + @{image/background.jpg} + ')'">
 
 <!-- Top content -->
 <div class="top-content">
@@ -73,7 +74,7 @@
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <form role="form" name="f" action="j_spring_security_check" method="post"
+                        <form role="form" name="f" action="/login" method="post"
                               class="login-form">
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>

@@ -49,8 +49,7 @@ public class UsernameRealm extends AuthorizingRealm {
     private RolePrivilegeDAO rolePrivilegeDAO;
 
     @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken)
-                                                                                                 throws AuthenticationException {
+    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         String username = (String) authenticationToken.getCredentials();
         String password = (String) authenticationToken.getPrincipal();
 
@@ -58,8 +57,7 @@ public class UsernameRealm extends AuthorizingRealm {
         if (userDO == null || isPasswordCorrect(userDO, MD5Util.textToMD5L32(password)))
             throw new UnknownAccountException();
 
-        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(userDO,
-            password, "Username Realm");
+        SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(userDO, password, "Username Realm");
         return simpleAuthenticationInfo;
     }
 
@@ -73,14 +71,12 @@ public class UsernameRealm extends AuthorizingRealm {
 
         List<UserRoleDO> userRoleDOs = userRoleDAO.findByUserId(user.getId());
         if (!userRoleDOs.isEmpty()) {
-            List<Long> roleIds = userRoleDOs.stream().map(userRole -> userRole.getUserId())
-                .collect(Collectors.toList());
+            List<Long> roleIds = userRoleDOs.stream().map(userRole -> userRole.getUserId()).collect(Collectors.toList());
             List<RoleDO> roleDOs = roleDAO.findByIdIn(roleIds);
             roleDOs.forEach(roleDO -> roleNames.add(roleDO.getName()));
 
             List<RolePrivilegeDO> rolePrivilegeDOs = rolePrivilegeDAO.findByRoleIdIn(roleIds);
-            List<Long> privilegeIds = rolePrivilegeDOs.stream()
-                .map(rolePrivilegeDO -> rolePrivilegeDO.getId()).collect(Collectors.toList());
+            List<Long> privilegeIds = rolePrivilegeDOs.stream().map(rolePrivilegeDO -> rolePrivilegeDO.getId()).collect(Collectors.toList());
             List<PrivilegeDO> privilegeDOs = privilegeDAO.findByIdIn(privilegeIds);
             privilegeDOs.forEach(privilegeDO -> privilegeNames.add(privilegeDO.getName()));
         }
